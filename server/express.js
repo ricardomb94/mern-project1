@@ -8,16 +8,18 @@ import helmet from 'helmet';
 import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
 import morgan from 'morgan';
+import path from 'path';
 
 //comment out before building for production
-// import devBundle from './devBundle';
+import devBundle from './devBundle';
 
-// const CURRENT_WORKING_DIR = process.cwd();
+const CURRENT_WORKING_DIR = process.cwd();
 
 const app = express();
 
 //comment out before building for production
-// devBundle.compile(app);
+devBundle.compile(app);
+app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')));
 
 /*... configure express ... */
 // parse body params and attache them to req.body
