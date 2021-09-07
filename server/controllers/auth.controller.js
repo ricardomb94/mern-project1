@@ -1,9 +1,12 @@
 import User from '../models/user.model';
-import jwt from 'jsonwebtoken';
-import expressJwt from 'express-jwt';
 import config from './../../config/config';
+import expressJwt from 'express-jwt';
+import jwt from 'jsonwebtoken';
 
-/**The POST request object receives the email and password in req.body. This email is used to retrieve a matching user from the database. Then, the password authentication method defined in UserSchema is used to verify the password that's received in req.body from the client. */
+/*
+  *The POST request object receives the email and password in req.body. This email is used to retrieve a matching user from the database. Then, the password authentication method defined in UserSchema is used to verify the password that's received in req.body from the client.
+ *
+*/
 const signin = async (req, res) => {
   try {
     let user = await User.findOne({ email: req.body.email });
@@ -42,7 +45,9 @@ const signout = (req, res) => {
     message: 'Déconnecté',
   });
 };
-/**The requireSignin method uses express-jwt to verify that the incoming request has a valid JWT in the Authorization header.If the token is valid, it appends the verified user's ID in an 'auth' key to the request object; otherwise, it throws an authentication error. */
+/*
+  *The requireSignin method uses express-jwt to verify that the incoming request has a valid JWT in the Authorization header.If the token is valid, it appends the verified user's ID in an 'auth' key to the request object; otherwise, it throws an authentication error.
+*/
 const requireSignin = expressJwt({
   secret: config.jwtSecret,
   algorithms: ['HS256'],

@@ -1,5 +1,6 @@
-import mongoose from 'mongoose';
 import crypto from 'crypto';
+import mongoose from 'mongoose';
+
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -25,6 +26,9 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
+/*
+  *The password string provided by the user is not stored directly in the user document. Instead, it is handled as a virtual field
+*/
 UserSchema.virtual('password')
   .set(function (password) {
     this._password = password;

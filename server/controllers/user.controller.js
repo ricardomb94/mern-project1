@@ -1,6 +1,6 @@
 import User from '../models/user.model';
-import extend from 'lodash/extend';
 import errorHandler from './../helpers/dbErrorHandler';
+import extend from 'lodash/extend';
 
 // const create = (req, res, next) => {};
 // const list = (req, res, next) => {};
@@ -77,7 +77,9 @@ const update = async (req, res) => {
   }
 };
 
-/**The remove function retrieves the user from req.profile and uses the remove() query to delete the user from the database.*/
+/*
+  *The remove function retrieves the user from req.profile and uses the remove() query to delete the user from the database.
+*/
 const remove = async (req, res) => {
   try {
     let user = req.profile;
